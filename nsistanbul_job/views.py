@@ -1,4 +1,6 @@
 from django.views.generic import TemplateView
+
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
 from nsistanbul_job.models import Company, CompanyApp, Job
@@ -21,11 +23,13 @@ class CompanyListCreateView(ModelViewSet):
     model = Company
     serializer_class = CompanySerializer
     queryset = Company.objects.filter(is_deleted=False)
+    permission_classes = [IsAuthenticated]
 
 
 class CompanyRetrieveUpdateView(ModelViewSet):
     model = Company
     serializer_class = CompanySerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         pk = self.kwargs['pk']
@@ -40,11 +44,13 @@ class CompanyAppListCreateView(ModelViewSet):
     model = CompanyApp
     serializer_class = CompanyAppSerializer
     queryset = CompanyApp.objects.filter(is_deleted=False)
+    permission_classes = [IsAuthenticated]
 
 
 class CompanyAppRetrieveUpdateView(ModelViewSet):
     model = CompanyApp
     serializer_class = CompanyAppSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         pk = self.kwargs['pk']
@@ -58,11 +64,13 @@ class JobListCreateView(ModelViewSet):
     model = Job
     serializer_class = JobSerializer
     queryset = Job.objects.filter(is_active=True, is_deleted=False)
+    permission_classes = [IsAuthenticated]
 
 
 class JobRetrieveUpdateView(ModelViewSet):
     model = Job
     serializer_class = JobSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         pk = self.kwargs['pk']

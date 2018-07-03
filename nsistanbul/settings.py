@@ -27,12 +27,12 @@ with open(env_path, 'r') as env_file:
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env['SECRET_KEY']
+SECRET_KEY = os.environ.get('SECRET_KEY', 'a+p$u$$+-tc=wsecretuimt8*httm2_crz2ye-0%9t=$-')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env['DEBUG']
 
-ALLOWED_HOSTS = env['ALLOWED_HOSTS']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -96,6 +96,10 @@ WSGI_APPLICATION = 'nsistanbul.wsgi.application'
 
 DATABASES = env['DATABASES']
 
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -151,4 +155,12 @@ REST_FRAMEWORK = {
 
 # CORS
 CORS_ORIGIN_WHITELIST = env['CORS_ORIGIN_WHITELIST']
-CORS_ALLOW_METHODS = env['CORS_ALLOW_METHODS']
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+)
+
