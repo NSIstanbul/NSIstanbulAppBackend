@@ -32,7 +32,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'a+p$u$$+-tc=wsecretuimt8*httm2_crz2ye
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG')
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
+ALLOWED_HOSTS = ['nsistanbulapi.herokuapp.com']
 
 
 # Application definition
