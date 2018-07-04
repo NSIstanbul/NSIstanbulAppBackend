@@ -11,16 +11,9 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-import json
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-env_path = os.path.join(BASE_DIR, '..', '.nsistanbul_env.json')
-if not os.path.exists(env_path):
-    env_path = os.path.join(BASE_DIR, 'conf', 'env.json')
-with open(env_path, 'r') as env_file:
-    env = json.loads(env_file.read())
 
 
 # Quick-start development settings - unsuitable for production
@@ -94,7 +87,12 @@ WSGI_APPLICATION = 'nsistanbul.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = env['DATABASES']
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 import dj_database_url
 db_from_env = dj_database_url.config()
