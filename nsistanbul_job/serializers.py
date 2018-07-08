@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from nsistanbul_job.models import Company, CompanyApp, Job
+from nsistanbul_job.models import About, Company, CompanyApp, Contributor, Job
 
 # Create Your Serializers Here.
 
@@ -8,34 +8,34 @@ from nsistanbul_job.models import Company, CompanyApp, Job
 class CompanySerializer(ModelSerializer):
     class Meta:
         model = Company
-        fields = [
+        fields = (
             'name',
             'email',
             'icon_url',
             'contact_url',
             'is_deleted',
             'created_at',
-            'modified_at',
-        ]
+            'modified_at'
+        )
 
 
 class CompanyAppSerializer(ModelSerializer):
     class Meta:
         model = CompanyApp
-        fields = [
+        fields = (
             'company',
             'name',
             'icon_url',
             'is_deleted',
             'created_at',
-            'modified_at',
-        ]
+            'modified_at'
+        )
 
 
 class JobSerializer(ModelSerializer):
     class Meta:
         model = Job
-        fields = [
+        fields = (
             'company',
             'position_title',
             'description',
@@ -43,5 +43,34 @@ class JobSerializer(ModelSerializer):
             'url',
             'is_active',
             'created_at',
-            'modified_at',
-        ]
+            'modified_at'
+        )
+
+
+class ContributorSerializer(ModelSerializer):
+    class Meta:
+        model = Contributor
+        fields = (
+            'id',
+            'name',
+            'avatar_url',
+            'external_url',
+            'is_active',
+            'is_deleted',
+            'created_at',
+            'modified_at'
+        )
+
+
+class AboutSerializer(ModelSerializer):
+
+    class Meta:
+        model = About
+        fields = (
+            'description',
+            'contributor',
+            'is_active',
+            'is_deleted',
+            'created_at',
+            'modified_at'
+        )
