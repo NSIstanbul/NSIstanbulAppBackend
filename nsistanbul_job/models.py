@@ -11,8 +11,8 @@ from django.utils.translation import ugettext_lazy as _
 class Company(Model):
     name = CharField(max_length=128)
     email = EmailField(max_length=64, unique=True)
-    icon_url = URLField(_("Icon URL"), max_length=1024, null=True, blank=True)
-    contact_url = URLField(_('Contact URL'), max_length=1024)
+    icon_url = CharField(_("Icon URL"), max_length=2048, null=True, blank=True)
+    contact_url = CharField(_('Contact URL'), max_length=2048)
 
     is_deleted = BooleanField(_('Is Deleted?'), default=False)
 
@@ -30,7 +30,7 @@ class Company(Model):
 class CompanyApp(Model):
     company = ForeignKey(Company, on_delete=CASCADE)
     name = CharField(_('App Name'), max_length=128)
-    icon_url = URLField(_('Icon URL'), max_length=1024, null=True, blank=True)
+    icon_url = CharField(_('Icon URL'), max_length=2048, null=True, blank=True)
 
     is_deleted = BooleanField(_('Is Deleted?'), default=False)
 
@@ -46,11 +46,11 @@ class CompanyApp(Model):
 
 
 class Job(Model):
-    company = ForeignKey(Company, on_delete=CASCADE)
+    company = CharField(_('Company Name'), max_length=256)
     position_title = CharField(max_length=256)
     description = TextField(max_length=512)
     city = CharField(max_length=64)
-    url = URLField(_('URL'), max_length=1024, null=True, blank=True)
+    url = CharField(_('URL'), max_length=2048, null=True, blank=True)
 
     is_active = BooleanField(_('Is Active?'), default=True)
     is_deleted = BooleanField(_('Is Deleted?'), default=False)
