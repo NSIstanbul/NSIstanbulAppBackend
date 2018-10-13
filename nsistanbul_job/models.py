@@ -1,7 +1,7 @@
 from django.db.models import Model, CASCADE, \
                               BooleanField, CharField, DateTimeField, \
                               EmailField, ForeignKey, TextField, \
-                              ManyToManyField
+                              ManyToManyField, PositiveIntegerField
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -72,6 +72,8 @@ class Contributor(Model):
     avatar_url = CharField(_('Avatar URL'), max_length=2048, null=True, blank=True)
     external_url = CharField(_('External URL'), max_length=2048, null=True, blank=True)
 
+    order = PositiveIntegerField(_('Order'), default=10, unique=True)
+
     is_active = BooleanField(_('Is Active?'), default=True)
     is_deleted = BooleanField(_('Is Deleted?'), default=False)
 
@@ -79,7 +81,7 @@ class Contributor(Model):
     modified_at = DateTimeField(_('Last Modified'), auto_now=True)
 
     class Meta:
-        ordering = ('name',)
+        ordering = ('order',)
 
     def __str__(self):
         return self.name

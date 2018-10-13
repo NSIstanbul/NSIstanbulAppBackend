@@ -75,7 +75,8 @@ class AdminCompanyApp(ImportExportModelAdmin):
 
 @register(Contributor)
 class AdminContributor(ImportExportModelAdmin):
-    list_display = ('name', 'is_active', 'is_deleted')
+    list_display = ('name', 'order', 'is_active', 'is_deleted')
+    list_editable = ('order',)
     list_filter = ('is_active', 'is_deleted')
     readonly_fields = ('created_at', 'modified_at',)
     search_fields = ('name',)
@@ -83,7 +84,7 @@ class AdminContributor(ImportExportModelAdmin):
     list_per_page = 50
     fieldsets = (
         (None, {
-            'fields': ('name', 'avatar_url', 'external_url')
+            'fields': ('name', 'avatar_url', 'external_url', 'order')
         }),
         (_("Status"), {
             'fields': ('is_active', 'is_deleted')
