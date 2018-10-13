@@ -72,7 +72,7 @@ class Contributor(Model):
     avatar_url = CharField(_('Avatar URL'), max_length=2048, null=True, blank=True)
     external_url = CharField(_('External URL'), max_length=2048, null=True, blank=True)
 
-    order = PositiveIntegerField(_('Order'), default=10, unique=True)
+    order = PositiveIntegerField(_('Order'), default=10)
 
     is_active = BooleanField(_('Is Active?'), default=True)
     is_deleted = BooleanField(_('Is Deleted?'), default=False)
