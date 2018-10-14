@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
 from nsistanbul_job.models import About, Company, CompanyApp, Contributor, Job
 
@@ -6,6 +6,7 @@ from nsistanbul_job.models import About, Company, CompanyApp, Contributor, Job
 
 
 class CompanySerializer(ModelSerializer):
+
     class Meta:
         model = Company
         fields = (
@@ -20,6 +21,7 @@ class CompanySerializer(ModelSerializer):
 
 
 class CompanyAppSerializer(ModelSerializer):
+
     class Meta:
         model = CompanyApp
         fields = (
@@ -33,6 +35,7 @@ class CompanyAppSerializer(ModelSerializer):
 
 
 class JobSerializer(ModelSerializer):
+
     class Meta:
         model = Job
         fields = (
@@ -48,6 +51,7 @@ class JobSerializer(ModelSerializer):
 
 
 class ContributorSerializer(ModelSerializer):
+
     class Meta:
         model = Contributor
         fields = (
@@ -63,12 +67,14 @@ class ContributorSerializer(ModelSerializer):
 
 
 class AboutSerializer(ModelSerializer):
+    contributor = ContributorSerializer(read_only=True, many=True)
 
     class Meta:
         model = About
         fields = (
             'description',
             'contributor',
+            #'contributors',
             'is_active',
             'is_deleted',
             'created_at',
