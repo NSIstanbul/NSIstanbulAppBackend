@@ -56,6 +56,7 @@ class ContributorSerializer(ModelSerializer):
         model = Contributor
         fields = (
             'id',
+            'order',
             'name',
             'avatar_url',
             'external_url',
@@ -74,7 +75,6 @@ class AboutSerializer(ModelSerializer):
         fields = (
             'description',
             'contributor',
-            #'contributors',
             'is_active',
             'is_deleted',
             'created_at',
