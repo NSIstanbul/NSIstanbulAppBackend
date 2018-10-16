@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'a+p$u$$+-tc=wsecretuimt8*httm2_crz2ye
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['nsistanbulapi.herokuapp.com']
+ALLOWED_HOSTS = ['nsistanbulapi.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -63,7 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    #'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'nsistanbul.urls'
@@ -137,12 +137,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-# STATIC_ROOT = os.path.join(BASE_DIR, '/staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, '/staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Rest Framework
 REST_FRAMEWORK = {
