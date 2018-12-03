@@ -85,7 +85,8 @@ class JobRetrieveUpdateView(ModelViewSet):
 class AboutListCreateView(ModelViewSet):
     model = About
     serializer_class = AboutSerializer
-    queryset = About.objects.filter(is_active=True, is_deleted=False)[0]
+    queryset = About.objects.filter(is_active=True, is_deleted=False)
+    print(queryset)
     permission_classes = [IsAuthenticated]
 
 
