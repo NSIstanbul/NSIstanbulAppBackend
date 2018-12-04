@@ -14,7 +14,7 @@ urlpatterns = [
     # Guide
     path('', login_required(URLGuide.as_view()), name='url_guide'),
     # About
-    path('about/', AboutListCreateView.as_view({'get': 'list', 'post': 'create'}), name='about_list_create'),
+    path('about/', AboutListCreateView.as_view({'get': 'retrieve', 'post': 'create'}), name='about_list_create'),
     path('about/<pk>/', AboutRetrieveUpdateView.as_view({'get': 'retrieve', 'put': 'update'}), name='about_retrieve_update'),
     # Company
     path('company/', CompanyListCreateView.as_view({'get': 'list', 'post': 'create'}), name='company_list_create'),

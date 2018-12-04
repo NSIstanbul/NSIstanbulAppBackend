@@ -68,15 +68,15 @@ class ContributorSerializer(ModelSerializer):
 
 
 class AboutSerializer(ModelSerializer):
-    contributor = ContributorSerializer(read_only=True, many=True)
+    contributors = ContributorSerializer(source='contributor', read_only=True, many=True)
 
     class Meta:
         model = About
         fields = (
             'description',
-            'contributor',
+            'contributors',
             'is_active',
             'is_deleted',
             'created_at',
-            'modified_at'
+            'modified_at',
         )

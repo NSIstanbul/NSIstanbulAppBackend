@@ -1,10 +1,7 @@
 from django.apps import AppConfig
-from suit.apps import DjangoSuitConfig
-
-
-class SuitConfig(DjangoSuitConfig):
-    layout = 'horizontal'
+from django.utils.translation import ugettext_lazy as _
 
 
 class NsistanbulJobConfig(AppConfig):
     name = 'nsistanbul_job'
+    verbose_name = _('Core')
